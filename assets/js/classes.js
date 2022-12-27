@@ -106,6 +106,74 @@ class Button{
     }
 }
 
+class Input{
+    _type = 'text';
+
+    constructor(id, label){
+        this._id = id;
+        this._label = label;
+    }
+
+    addClass(className){
+        let element = document.getElementById(this._id);
+
+        addClass(element, className);
+    }
+
+    removeClass(className){
+        let element = document.getElementById(this._id);
+
+        removeClass(element, className);
+    }
+
+    addAttribute(name, value){
+        let element = document.getElementById(this._id);
+        console.log(element);
+
+        setAttribute(element, name, value);
+    }
+
+    removeAttribute(name){
+        let element = document.getElementById(this._id);
+
+        removeAttribute(element, name);
+    }
+
+    render(element){
+        let input = document.createElement('input');
+
+        input.setAttribute('type', this._type);
+        input.setAttribute('placeholder', this._label);
+        input.setAttribute('id', this._id);
+
+        element.appendChild(input);
+    }
+}
+
+function setAttribute(el, name, value){
+    if(!document.body.contains(el)){
+        throw new Error('Element not found');
+    }else{
+        if(el.getAttribute(name)){
+            throw new Error(`Attribute ${name} is already defined`);
+        }else{
+            el.setAttribute(name, value);
+        }
+    }
+}
+
+function removeAttribute(el, name){
+    if(!document.body.contains(el)){
+        throw new Error('Element not found');
+    }else{
+        if(el.getAttribute(name)){
+            el.removeAttribute(name);
+        }else{
+            throw new Error(`Attribute ${name} is not defined`);
+        }
+    }
+}
+
 function addClass(el, className){
     if(!document.body.contains(el)){
         throw new Error('Element not found');
@@ -133,5 +201,6 @@ function removeClass(el, className){
 export {
     Div,
     H,
-    Button
+    Button,
+    Input
 }

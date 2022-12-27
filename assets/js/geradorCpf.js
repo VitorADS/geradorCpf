@@ -33,6 +33,30 @@ function numeroAleatorio(){
     return numero;
 }
 
+function muda(){
+    let botaoMuda = document.getElementById('muda');
+    let h2D = document.getElementById('h2D');
+    let cpf = document.getElementById('cpf');
+    let row2 = document.getElementById('row2');
+    let b1 = document.getElementById('b1');
+
+    row2.classList.remove('alert-success');
+
+    if(h2D.hidden == true){
+        h2D.hidden = false;
+        cpf.hidden = true;
+        botaoMuda.innerHTML = 'Validar CPF';
+        b1.setAttribute('onclick', 'gerarCpf()');
+        b1.innerHTML = 'Gerar';
+    }else{
+        h2D.hidden = true;
+        cpf.hidden = false;
+        botaoMuda.innerHTML = 'Gerar CPF';
+        b1.setAttribute('onclick', 'validaCpf()');
+        b1.innerHTML = 'Validar';
+    }
+}
+
 function validaCpf(cpf){
     cpf = cpf.split('');
 

@@ -2,18 +2,22 @@ class Div{
     _elements = []
     _container = document.querySelector('body');
 
+    constructor(id){
+        this._id = id;
+    }
+
     addElement(element){
         this._elements.push(element);
     }
 
     addClass(className){
-        let element = this._container;
+        let element = document.getElementById(this._id);
 
         addClass(element, className);
     }
 
     removeClass(className){
-        let element = this._container;
+        let element = document.getElementById(this._id);
 
         removeClass(element, className);
     }
@@ -22,61 +26,71 @@ class Div{
         this._container = document.querySelector(container);
     }
 
-    render(){
+    render(element){
         let div = document.createElement('div');
+        
+        div.setAttribute('id', this._id);
+
+        if(document.body.contains(element)){
+            element.appendChild(div);
+        }else{
+            this._container.appendChild(div);
+        }
 
         for(let i in this._elements){
             this._elements[i].render(div);
         }
-
-        this._container.appendChild(div);
     }
 
 }
 
-class H1{
+class H{
 
-    constructor(content){
+    constructor(id, content, htype){
+        this._id = id;
         this._content = content;
+        this._htype = htype;
     }
 
     addClass(className){
-        let element = this._container;
+        let element = document.getElementById(this._id);
 
         addClass(element, className);
     }
 
     removeClass(className){
-        let element = this._container;
+        let element = document.getElementById(this._id);
 
         removeClass(element, className);
     }
 
     render(element){
-        let h1 = document.createElement('h1');
+        let h = document.createElement('h'+this._htype);
 
-        h1.innerHTML = this._content;
+        h.innerHTML = this._content;
+        h.setAttribute('id', this._id);
 
-        element.appendChild(h1);
+        element.appendChild(h);
     }
 }
 
 class Button{
     _type = 'button';
 
-    constructor(label, onclick){
-        this.label = label;
-        this.onclick = onclick;
+    constructor(id, label, onclick){
+        this._id = id;
+        this._label = label;
+        this._onclick = onclick;
     }
 
     addClass(className){
-        let element = this._container;
+        let element = document.getElementById(this._id);
 
         addClass(element, className);
     }
 
     removeClass(className){
-        let element = this._container;
+        let element = document.getElementById(this._id);
 
         removeClass(element, className);
     }
@@ -84,8 +98,9 @@ class Button{
     render(element){
         let button = document.createElement(this._type);
 
-        button.innerHTML = this.label;
-        button.setAttribute('onclick', this.onclick);
+        button.innerHTML = this._label;
+        button.setAttribute('onclick', this._onclick);
+        button.setAttribute('id', this._id);
 
         element.appendChild(button);
     }
@@ -117,6 +132,6 @@ function removeClass(el, className){
 
 export {
     Div,
-    H1,
+    H,
     Button
 }

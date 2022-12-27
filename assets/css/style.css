@@ -1,0 +1,26 @@
+#divSite{
+    background-color: #DDD;
+    margin-top: 50px;
+    height: 350px;
+    width: 450px;
+    border-radius: 5px;
+}
+
+#row1{
+    padding-top: 25px;
+}
+
+#row2{
+    margin-top: 50px;
+    height: 60px;
+}
+
+#row3{
+    margin-top: 60px;
+}
+
+#b1{
+    width: 200px;
+    height: 50px;
+    font-size: 18px;
+}

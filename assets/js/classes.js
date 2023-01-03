@@ -128,7 +128,6 @@ class Input{
 
     addAttribute(name, value){
         let element = document.getElementById(this._id);
-        console.log(element);
 
         setAttribute(element, name, value);
     }
